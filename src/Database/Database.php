@@ -37,7 +37,7 @@ class Database
 
     // Method to insert a new record into the table
     public static function all(): ?array
-    {   echo "(database all function ) ";
+    {
         $query = 'SELECT * FROM ' . static::$table;
         $stmt = (new static)->conn->query($query);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

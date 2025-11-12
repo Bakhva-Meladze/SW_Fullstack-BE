@@ -9,7 +9,7 @@ class Products extends Database
 {
     protected static string $table = 'products';
 
-    public static function products($category,$limit)
+    public static function products($category)
     {
         $products = new static();
 
@@ -19,7 +19,7 @@ class Products extends Database
             $productDetail = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->fetchAll(PDO::FETCH_ASSOC);
         } else {
-            $productDetail = Products::all($limit); //IV ცვლილება
+            $productDetail = Products::all();
         }
         foreach ($productDetail as &$product) {
             self::productDetail($product);
@@ -60,16 +60,5 @@ class Products extends Database
 
         return $results[0] ?? [];
     }
-    public static function searchProducts($search)
-    {
-        $products = new static();
-        $query ="select * from products where  name like '%$search%'";
-        $stmt = $products->conn->query($query);
-        $productsDetail = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($productsDetail as &$product) {
-            self::productDetail($product);
-        }
-        return $productsDetail;
 
-    }
 }

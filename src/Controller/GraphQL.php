@@ -14,7 +14,6 @@ class GraphQL
 {
     static public function handle()
     {
-        echo " (  handle function)";
         try {
             $queryType = Query::defineQueries();
             $mutationType = Mutation::defineMutations();
@@ -38,7 +37,6 @@ class GraphQL
 
     private static function executeQuery($schema): array
     {
-        echo " ( executeQuery )";
         $rawInput = file_get_contents('php://input');
         if ($rawInput === false) {
             throw new RuntimeException('Failed to get php://input');

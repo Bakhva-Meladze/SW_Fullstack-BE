@@ -9,7 +9,6 @@ class CategoryType extends ObjectType
 {
     public function __construct()
     {
-        echo " ( Category Types)";
         parent::__construct([
             'name' => 'Category',
             'limit' => Type::int(),

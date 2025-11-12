@@ -13,7 +13,6 @@ class Query
 {
     public static function defineQueries(): ObjectType
     {
-        echo " ( Query.php defineQueries function)";
 
         $productType = new ProductType();
         return new ObjectType([
@@ -35,12 +34,11 @@ class Query
                     'type' => Type::listOf($productType),
                     'args' => [
                         'category' => ['type' => Type::string()],
-                        'limit' => Type::int(),   // I პირველი ცვლილება
                     ],
                     'resolve' => static fn(
                         $rootValue,
                         array $args
-                    ) => ProductResolver::products($args['category'],$args['limit']), // II მეორე ცვლილება
+                    ) => ProductResolver::products($args['category']),
                 ],
                 'product' => [
                     'type' => $productType,
@@ -48,13 +46,6 @@ class Query
                         'id' => ['type' => Type::nonNull(Type::string())],
                     ],
                     'resolve' => static fn($rootValue, array $args) => ProductResolver::product($args['id']),
-                ],
-                'searchProducts' => [  // ✅ Added search query
-                    'type' => Type::listOf($productType),
-                    'args' => [
-                        'search' => ['type' => Type::nonNull(Type::string())], // Required search term
-                    ],
-                    'resolve' => static fn($rootValue, array $args) => ProductResolver::searchProducts($args['search']),
                 ],
             ],
         ]);

@@ -3,9 +3,9 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->post('/scandiweb-fullstack-BE/graphql', [App\Controller\GraphQL::class, 'handle']);
+    $r->post('/SW_Fullstack-BE/graphql', [App\Controller\GraphQL::class, 'handle']);
 });
-echo " ( index.php) ";
+
 
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Methods: HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS");
